@@ -1,0 +1,31 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Train VAD",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "torch.distributed.run",
+            "args": [
+                "--nproc_per_node=1",
+                "--master_port=2333",
+                "tools/train.py",
+                "projects/configs/VAD/VAD_tiny_e2e.py",
+                "--launcher",
+                "pytorch",
+                "--deterministic",
+                "--work-dir",
+                "${workspaceFolder}/outputs"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+                "PYTORCH_CUDA_ALLOC_CONF": "max_split_size_mb:128"
+            }
+        }
+    ]
+}
